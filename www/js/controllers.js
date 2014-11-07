@@ -7,6 +7,9 @@ angular.module('starter.controllers', [])
   $scope.friends = Friends.all();
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.token = '';
+.controller('AccountCtrl', function($scope, $localstorage) {
+  $scope.token = $localstorage.get('token', '');
+  $scope.save = function() {
+    $localstorage.set('token', this.token);
+  };
 });
