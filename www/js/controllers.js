@@ -1,10 +1,27 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {
+.controller('DashCtrl', function($scope, TicketSrvc) {
+  TicketSrvc.validtickets().success(function(tickets) {
+    $scope.tickets = tickets;
+  });
 })
 
-.controller('BuyCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
+.controller('BuyCtrl', function($scope, $rootScope, $location, TicketSrvc) {
+  $scope.data = [];
+  TicketSrvc.list().success(function(data) {
+    $scope.data = data;
+  });
+
+  $scope.buy = function(ticket) {
+    TicketSrvc.buy(ticket).success(function(data) {
+      $rootScope.loggedUser.credit -= ticket.amount;
+      $location.path('/');
+    }).error(function(err, status){
+      if (status === 400) {
+        alert('Not enough money!');
+      }
+    });
+  };
 })
 
 .controller('AccountCtrl', function($scope, $localstorage) {

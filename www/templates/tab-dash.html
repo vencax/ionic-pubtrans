@@ -1,15 +1,23 @@
-<ion-view title="Dashboard">
+<ion-view title="Dashboard | credit: {{loggedUser.credit}} CZK">
   <ion-content class="padding">
 
     <h1>Dashboard</h1>
 
-    <ion-content>
-      <ion-list>
-        <ion-item ng-repeat="vt in valid" type="item-text-wrap" href="#/tab/friend/{{friend.id}}">
-          {{friend.name}}
-        </ion-item>
-      </ion-list>
-    </ion-content>
+    <h4>Valid tickets:</h4>
+
+    <div class="row responsive-sm" data-ng-hide="tickets.length === 0">
+      <div class="col ticket" ng-repeat="t in tickets">
+        <img data-ng-src="{{ t.url }}" alt="obrázek jízdenky" />
+        <p>ID: {{ t.id }}</p>
+        <p>Valid till: <br>
+          {{ t.expires }}
+        </p>
+      </div>
+    </div>
+
+    <div class="alert alert-danger" role="alert" data-ng-show="tickets.length === 0">
+      You have no valid ticket!
+    </div>
 
   </ion-content>
 </ion-view>

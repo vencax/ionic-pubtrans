@@ -1,1 +1,10 @@
 /* Empty. Add your own CSS if you like */
+
+.ticket {
+  width: 100px;
+  margin: 10px;
+}
+
+.ticket img {
+  width: 100px;
+}

@@ -9,7 +9,7 @@ angular.module('starter', [
   'ionic', 'starter.controllers', 'starter.services', 'ionic.utils'
 ])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, TicketSrvc) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -20,6 +20,15 @@ angular.module('starter', [
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    $rootScope.loggedUser = {
+      id: 111,
+      name: 'Gandalf'
+    };
+    TicketSrvc.credit($rootScope.loggedUser).success(function(credit){
+      $rootScope.loggedUser.credit = credit;
+    });
+
   });
 })
 

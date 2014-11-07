@@ -1,9 +1,11 @@
-<ion-view title="Friends">
+<ion-view title="Buy ticket | credit: {{loggedUser.credit}} CZK">
   <ion-content>
-    <ion-list>
-      <ion-item ng-repeat="friend in friends" type="item-text-wrap" href="#/tab/friend/{{friend.id}}">
-        {{friend.name}}
-      </ion-item>
-    </ion-list>
+    <div class="row responsive-sm">
+      <div class="col ticket" ng-repeat="t in data" data-ng-click="buy(t);">
+        <img data-ng-src="{{ t.url }}" alt="obrázek jízdenky" />
+        <h4>{{ t.desc }}</h4>
+        <p>{{ t.amount }}</p>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

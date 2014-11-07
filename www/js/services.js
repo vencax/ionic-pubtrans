@@ -1,26 +1,33 @@
 angular.module('starter.services', [])
 
-/**
- * A simple example service that returns some data.
- */
-.factory('Friends', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var friends = [
-    { id: 0, name: 'Scruff McGruff' },
-    { id: 1, name: 'G.I. Joe' },
-    { id: 2, name: 'Miss Frizzle' },
-    { id: 3, name: 'Ash Ketchum' }
-  ];
+.factory('TicketSrvc', function($http) {
+  // these routes map to stubbed API endpoints in config/server.js
+  // var host = 'http://localhost:8000';
+  var host = 'https://mhdtabor.herokuapp.com';
 
   return {
-    all: function() {
-      return friends;
+    list: function() {
+      return $http.get(host + '/api/tickets');
     },
-    get: function(friendId) {
-      // Simple index lookup
-      return friends[friendId];
+
+    buy: function(ticket) {
+      return $http.post(host + '/api/buy/' + ticket.id);
+    },
+
+    isvalid: function(id) {
+      return $http.get(host + '/api/valid/' + id);
+    },
+
+    validtickets: function() {
+      return $http.get(host + '/api/valid');
+    },
+
+    credithistory: function() {
+      return $http.get(host + '/api/credit/history');
+    },
+
+    credit: function(user) {
+      return $http.get(host + '/api/credit/' + user.id);
     }
-  }
+  };
 });
