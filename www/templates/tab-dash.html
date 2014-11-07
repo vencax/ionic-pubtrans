@@ -1,5 +1,15 @@
 <ion-view title="Dashboard">
   <ion-content class="padding">
-    <h1>Dash</h1>
+
+    <h1>Dashboard</h1>
+
+    <ion-content>
+      <ion-list>
+        <ion-item ng-repeat="vt in valid" type="item-text-wrap" href="#/tab/friend/{{friend.id}}">
+          {{friend.name}}
+        </ion-item>
+      </ion-list>
+    </ion-content>
+
   </ion-content>
 </ion-view>
