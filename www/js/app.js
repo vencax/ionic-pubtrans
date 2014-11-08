@@ -10,7 +10,7 @@ angular.module('starter', [
   'pascalprecht.translate'
 ])
 
-.run(function($ionicPlatform, $rootScope, TicketSrvc) {
+.run(function($ionicPlatform, $rootScope, $timeout, TicketSrvc) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -26,9 +26,15 @@ angular.module('starter', [
       id: 111,
       name: 'Gandalf'
     };
-    TicketSrvc.credit($rootScope.loggedUser).success(function(credit){
-      $rootScope.loggedUser.credit = credit;
-    });
+
+    var update = function() {
+      TicketSrvc.credit($rootScope.loggedUser).success(function(credit){
+        $rootScope.loggedUser.credit = credit;
+      });
+      $timeout(update, 10000);
+    };
+
+    update();
 
   });
 })
