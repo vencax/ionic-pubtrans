@@ -6,7 +6,8 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', [
-  'ionic', 'starter.controllers', 'starter.services', 'ionic.utils'
+  'ionic', 'starter.controllers', 'starter.services', 'ionic.utils',
+  'pascalprecht.translate'
 ])
 
 .run(function($ionicPlatform, $rootScope, TicketSrvc) {
@@ -82,7 +83,32 @@ angular.module('starter', [
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
 
-});
+})
+
+.config(['$translateProvider', function ($translateProvider) {
+  $translateProvider.translations('en', {
+    'TITLE': 'Hello',
+    'LOADING': 'This is a paragraph',
+    'HOME': 'Hom',
+    'BUY': 'Buy',
+    'SETTINGS': 'Settings',
+    'VALID_TICKETS': 'Valid tickets',
+    'NO_VALID_TICKETS': 'You have no valid ticket!'
+  });
+
+  $translateProvider.translations('cs', {
+    'TITLE': 'Hallo',
+    'LOADING': 'Nahrávám',
+    'HOME': 'Domů',
+    'BUY': 'Nákup',
+    'SETTINGS': 'Nastavení',
+    'CREDIT': 'Kredit',
+    'VALID_TICKETS': 'Platné jízdenky',
+    'NO_VALID_TICKETS': 'Nemáte žádné platné jízdenky!!'
+  });
+
+  $translateProvider.preferredLanguage('cs');
+}]);
 
 angular.module('ionic.utils', [])
 

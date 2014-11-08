@@ -6,10 +6,12 @@ angular.module('starter.controllers', [])
   });
 })
 
-.controller('BuyCtrl', function($scope, $rootScope, $location, $ionicLoading, TicketSrvc) {
+.controller('BuyCtrl', function($scope, $rootScope, $location, $ionicLoading, $translate, TicketSrvc) {
   $scope.show = function() {
-    $ionicLoading.show({
-      template: 'Loading...'
+    $translate('LOADING').then(function (translation) {
+      $ionicLoading.show({
+        template: translation + ' ...'
+      });
     });
   };
   $scope.hide = function(){

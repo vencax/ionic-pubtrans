@@ -1,9 +1,9 @@
-<ion-view title="Dashboard | credit: {{loggedUser.credit}} CZK">
+<ion-view title="Dashboard | {{'CREDIT' | translate}}: {{loggedUser.credit}} CZK">
   <ion-content class="padding">
 
     <h1>Dashboard</h1>
 
-    <h4>Valid tickets:</h4>
+    <h4>{{'VALID_TICKETS' | translate}}</h4>
 
     <div class="row responsive-sm" data-ng-hide="tickets.length === 0">
       <div class="col ticket" ng-repeat="t in tickets">
@@ -16,7 +16,7 @@
     </div>
 
     <div class="alert alert-danger" role="alert" data-ng-show="tickets.length === 0">
-      You have no valid ticket!
+      {{'NO_VALID_TICKETS' | translate}}
     </div>
 
   </ion-content>
