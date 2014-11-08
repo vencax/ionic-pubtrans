@@ -8,3 +8,7 @@
 .ticket img {
   width: 100px;
 }
+
+.disabled {
+  background-color: red;
+}

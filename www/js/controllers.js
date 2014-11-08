@@ -29,6 +29,9 @@ angular.module('starter.controllers', [])
   });
 
   $scope.buy = function(ticket) {
+    if(ticket.amount > $rootScope.loggedUser.credit) {
+      return;
+    }
     $scope.show();
     TicketSrvc.buy(ticket).success(function(data) {
       $rootScope.loggedUser.credit -= ticket.amount;

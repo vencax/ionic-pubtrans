@@ -1,11 +1,15 @@
 <ion-view title="Buy ticket | credit: {{loggedUser.credit}} CZK">
   <ion-content>
-    <div class="row responsive-sm">
-      <div class="col ticket" ng-repeat="t in data" data-ng-click="buy(t);">
-        <img data-ng-src="{{ t.url }}" alt="obrázek jízdenky" />
-        <h4>{{ t.desc }}</h4>
-        <p>{{ t.amount }}</p>
-      </div>
-    </div>
+
+    <ion-slide-box does-continue="1">
+      <ion-slide ng-repeat="t in data" ng-class="{disabled: loggedUser.credit < t.amount}">
+        <div class="box ticket" data-ng-click="buy(t);">
+          <img data-ng-src="{{ t.url }}" alt="obrázek jízdenky" />
+          <h4>{{ t.desc }}</h4>
+          <p>{{ t.amount }}</p>
+        </div>
+      </ion-slide>
+    </ion-slide-box>
+
   </ion-content>
 </ion-view>
