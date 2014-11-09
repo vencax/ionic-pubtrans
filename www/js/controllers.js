@@ -12,6 +12,13 @@ var hideLoading = function($ionicLoading){
 
 angular.module('starter.controllers', [])
 
+.filter('nicedate', function(){
+  return function(date) {
+    var m = moment(date);
+    return m.format('l') + ', ' + m.format('LT');
+  };
+})
+
 .controller('DashCtrl', function($scope, $timeout, TicketSrvc) {
 
   $scope.updateRemains = function() {

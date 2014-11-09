@@ -8,7 +8,7 @@
     <div class="row responsive-sm" data-ng-hide="tickets.length === 0" ng-repeat="t in tickets">
       <div class="col col-20">#{{ t.id }}</div>
       <div class="col col-10">{{ t.remains }}</div>
-      <div class="col col-30">{{ t.expires }}</div>
+      <div class="col col-30">{{ t.expires | nicedate }}</div>
       <div class="col col-40">{{ t.desc }}</div>
     </div>
 

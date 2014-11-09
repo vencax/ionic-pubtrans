@@ -126,6 +126,7 @@ angular.module('starter', [
   });
 
   $translateProvider.preferredLanguage('cs');
+  moment.locale('cs');
 }]);
 
 angular.module('ionic.utils', [])
