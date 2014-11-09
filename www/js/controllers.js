@@ -12,10 +12,26 @@ var hideLoading = function($ionicLoading){
 
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, TicketSrvc) {
+.controller('DashCtrl', function($scope, $timeout, TicketSrvc) {
+
+  $scope.updateRemains = function() {
+    var now = moment();
+    for(var idx in $scope.tickets) {
+      var t = $scope.tickets[idx];
+      t.remains = ((t.expires - now) / 60000) | 0;
+    }
+    $timeout($scope.updateRemains, 60000);
+  };
+
   TicketSrvc.validtickets().success(function(tickets) {
     $scope.tickets = tickets;
+    for(var idx in $scope.tickets) {
+      var t = $scope.tickets[idx];
+      t.expires = moment(t.expires);
+    }
+    $scope.updateRemains();
   });
+
 })
 
 .controller('BuyCtrl', function($scope, $rootScope, $location, $ionicLoading, $translate, TicketSrvc) {
