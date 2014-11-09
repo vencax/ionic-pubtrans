@@ -1,7 +1,9 @@
-<ion-view title="Dashboard | {{'CREDIT' | translate}}: {{loggedUser.credit}} CZK">
+<ion-view title="Dashboard | {{'CREDIT' | translate}}: {{loggedUser.credit}} CZK | UID: {{loggedUser.id}}">
   <ion-content class="padding">
 
     <h4>{{'VALID_TICKETS' | translate}}</h4>
+
+    <i data-ng-show="tickets === undefined" class="icon ion-loading-c"></i>    
 
     <div class="table" data-ng-hide="tickets.length === 0" ng-repeat="t in tickets">
       <div class="row">
