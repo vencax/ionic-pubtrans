@@ -76,6 +76,16 @@ angular.module('starter', [
       }
     })
 
+    .state('tab.history', {
+      url: '/history',
+      views: {
+        'tab-history': {
+          templateUrl: 'templates/tab-history.html',
+          controller: 'HistoryCtrl'
+        }
+      }
+    })
+
     .state('tab.account', {
       url: '/account',
       views: {
@@ -99,7 +109,8 @@ angular.module('starter', [
     'BUY': 'Buy',
     'SETTINGS': 'Settings',
     'VALID_TICKETS': 'Valid tickets',
-    'NO_VALID_TICKETS': 'You have no valid ticket!'
+    'NO_VALID_TICKETS': 'You have no valid ticket!',
+    'HISTORY': 'History'
   });
 
   $translateProvider.translations('cs', {
@@ -110,7 +121,8 @@ angular.module('starter', [
     'SETTINGS': 'Nastavení',
     'CREDIT': 'Kredit',
     'VALID_TICKETS': 'Platné jízdenky',
-    'NO_VALID_TICKETS': 'Nemáte žádné platné jízdenky!!'
+    'NO_VALID_TICKETS': 'Nemáte žádné platné jízdenky!!',
+    'HISTORY': 'Historie'
   });
 
   $translateProvider.preferredLanguage('cs');

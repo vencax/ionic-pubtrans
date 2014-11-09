@@ -1,3 +1,15 @@
+var showLoading = function($ionicLoading, $translate) {
+  $translate('LOADING').then(function (translation) {
+    $ionicLoading.show({
+      template: translation + ' ...'
+    });
+  });
+};
+
+var hideLoading = function($ionicLoading){
+  $ionicLoading.hide();
+};
+
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, TicketSrvc) {
@@ -7,16 +19,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('BuyCtrl', function($scope, $rootScope, $location, $ionicLoading, $translate, TicketSrvc) {
-  $scope.show = function() {
-    $translate('LOADING').then(function (translation) {
-      $ionicLoading.show({
-        template: translation + ' ...'
-      });
-    });
-  };
-  $scope.hide = function(){
-    $ionicLoading.hide();
-  };
+
 
   $scope.data = [];
   $scope.show();
@@ -24,28 +27,40 @@ angular.module('starter.controllers', [])
   TicketSrvc.list()
   .success(function(data) {
     $scope.data = data;
-    $scope.hide();
+    hideLoading($ionicLoading);
   })
   .error(function(err, status){
-    $scope.hide();
+    hideLoading($ionicLoading);
   });
 
   $scope.buy = function(ticket) {
     if(ticket.amount > $rootScope.loggedUser.credit) {
       return;
     }
-    $scope.show();
+    showLoading($ionicLoading, $translate);
     TicketSrvc.buy(ticket).success(function(data) {
       $rootScope.loggedUser.credit -= ticket.amount;
       $location.path('/');
-      $ionicLoading.hide();
+      hideLoading($ionicLoading);
     }).error(function(err, status){
       if (status === 400) {
         alert('Not enough money!');
       }
-      $ionicLoading.hide();
+      hideLoading($ionicLoading);
     });
   };
+})
+
+.controller('HistoryCtrl', function($scope, $ionicLoading, $translate, TicketSrvc) {
+
+  $scope.items = [];
+  showLoading($ionicLoading, $translate);
+
+  TicketSrvc.credithistory().success(function(items) {
+    $scope.items = items;
+    hideLoading($ionicLoading);
+  });
+
 })
 
 .controller('AccountCtrl', function($scope, $localstorage) {
