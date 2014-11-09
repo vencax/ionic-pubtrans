@@ -1,11 +1,13 @@
 <ion-view title="{{'HISTORY' | translate}} | {{'CREDIT' | translate}}: {{loggedUser.credit}} CZK">
   <ion-content class="padding">
 
-    <div class="row" data-ng-repeat="i in items" data-ng-class="{'balanced': i.amount > 0, 'warning': i.amount < 0}">
-      <div class="col col-10">#{{ i.id }}</div>
-      <div class="col col-30">{{ i.createdAt | nicedate }}</div>
-      <div class="col col-10">{{ i.amount }}</div>
-      <div class="col col-50">{{ i.desc }}</div>
+    <div class="table" data-ng-repeat="i in items" data-ng-class="{'balanced': i.amount > 0, 'warning': i.amount < 0}">
+      <div class="row">
+        <div class="col col-20">#{{ i.id }}</div>
+        <div class="col col-60">{{ i.createdAt | nicedate }}</div>
+        <div class="col col-20">{{ i.amount }}</div>
+      </div>
+      <div class="row">{{ i.desc }}</div>
     </div>
 
   </ion-content>

@@ -1,15 +1,15 @@
 <ion-view title="Dashboard | {{'CREDIT' | translate}}: {{loggedUser.credit}} CZK">
   <ion-content class="padding">
 
-    <h1>Dashboard</h1>
-
     <h4>{{'VALID_TICKETS' | translate}}</h4>
 
-    <div class="row responsive-sm" data-ng-hide="tickets.length === 0" ng-repeat="t in tickets">
-      <div class="col col-20">#{{ t.id }}</div>
-      <div class="col col-10">{{ t.remains }}</div>
-      <div class="col col-30">{{ t.expires | nicedate }}</div>
-      <div class="col col-40">{{ t.desc }}</div>
+    <div class="table" data-ng-hide="tickets.length === 0" ng-repeat="t in tickets">
+      <div class="row">
+        <div class="col col-40">#{{ t.id }}</div>
+        <div class="col col-10">{{ t.remains }}</div>
+        <div class="col col-50">{{ t.expires | nicedate }}</div>
+      </div>
+      <div class="row">{{ t.desc }}</div>
     </div>
 
     <div class="alert alert-danger" role="alert" data-ng-show="tickets.length === 0">

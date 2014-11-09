@@ -25,7 +25,7 @@ angular.module('starter.controllers', [])
     var now = moment();
     for(var idx in $scope.tickets) {
       var t = $scope.tickets[idx];
-      t.remains = ((t.expires - now) / 60000) | 0;
+      t.remains = (((t.expires - now) / 60000) | 0) + 1;
     }
     $timeout($scope.updateRemains, 60000);
   };

@@ -12,3 +12,7 @@
 .disabled {
   background-color: red;
 }
+
+.table {
+  border-bottom: 1px dotted black;
+}
