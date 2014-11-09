@@ -20,9 +20,8 @@ angular.module('starter.controllers', [])
 
 .controller('BuyCtrl', function($scope, $rootScope, $location, $ionicLoading, $translate, TicketSrvc) {
 
-
   $scope.data = [];
-  $scope.show();
+  showLoading($ionicLoading, $translate);
 
   TicketSrvc.list()
   .success(function(data) {
