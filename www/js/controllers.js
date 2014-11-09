@@ -41,7 +41,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('BuyCtrl', function($scope, $rootScope, $location, $ionicLoading, $translate, TicketSrvc) {
+.controller('BuyCtrl', function($scope, $rootScope, $location, $ionicLoading, $translate, $ionicSlideBoxDelegate, TicketSrvc) {
 
   $scope.data = [];
   showLoading($ionicLoading, $translate);
@@ -49,6 +49,7 @@ angular.module('starter.controllers', [])
   TicketSrvc.list()
   .success(function(data) {
     $scope.data = data;
+    $ionicSlideBoxDelegate.update();
     hideLoading($ionicLoading);
   })
   .error(function(err, status){
